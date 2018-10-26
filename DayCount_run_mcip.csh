@@ -1,15 +1,12 @@
 #!/bin/csh -f
 ###################################################################
-# Usage: Preparing following variables for run.mcip.csh:
+# Usage: Preparing following variables for run.mcip.csh script:
 # 	month1, month2, today, tmrw
 # Created by: Ehsan Mosadegh (ehsanm@dri.edu)
 # Date: Sep.12, 2018
-# NOTES: for only montes: 07-11
-# 	need an extra wrfout file for 1st day of month 12
-# 	days and months should be in 2-digit format (dd)
-# 	use "@ var = $var + x" for arithmatic calculations; don't 
-# 	-forger space between each character
-# 	use "set var=$var" to set the value
+# NOTES: 
+# - for only montes: 07-11
+#
 # #################################################################
 echo "*** Start of DayCount script ..."
 set month_list = (07 08 09 10 11)
@@ -24,26 +21,17 @@ foreach m ($month_list)
 	if ($month1 == 07 || $month1 == 08 || $month1 == 10) then
 		foreach d ($day_list_31days)
 			if ($d < 09) then
-				#echo "d is=$d"
 				set today = $d
-				#echo "today is=$today"
 				@ tmrw = $d + 1
 				set tmrw = 0$tmrw
-				#echo "tmrw is=$tmrw"
                         else if ($d == 09) then
-                                #echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"
 			else if ($d >= 10) then	
-				#echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"				
 				if ($tmrw == 32) then
 					echo "modification for tmrw=$tmrw"
 					@ month2 = $m + 1
@@ -66,29 +54,19 @@ foreach m ($month_list)
 		###################################################	
 		end
 	else if ($month1 == 09 || $month1 == 11) then
-		# do for 30days month
 		foreach d ($day_list_30days)
 			if ($d < 09) then
-                                #echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = 0$tmrw
-                                #echo "tmrw is=$tmrw"
                         else if ($d == 09) then
-                                #echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"
                         else if ($d >= 10) then
-                                #echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"
                                 if ($tmrw == 31) then
                                         echo "*** modification for tmrw=$tmrw ..."
 					@ month2 = $m + 1
@@ -113,26 +91,17 @@ foreach m ($month_list)
 	else if ($month1 == 02) then
 		foreach d ($day_list_30days)
                         if ($d < 9) then
-                                #echo "d is=$d"
                                 set today = 0$d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = 0$tmrw
-                                #echo "tmrw is=$tmrw"
                         else if ($d == 9) then
-                                #echo "d is=$d"
                                 set today = 0$d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"
                         else if ($d >= 10) then
-                                #echo "d is=$d"
                                 set today = $d
-                                #echo "today is=$today"
                                 @ tmrw = $d + 1
                                 set tmrw = $tmrw
-                                #echo "tmrw is=$tmrw"
                                 if ($tmrw == 31) then
                                         echo "modification for tmrw=$tmrw"
                                         @ month2 = $m + 1
